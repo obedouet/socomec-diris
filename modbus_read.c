@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 			else if (code==2)
 			{
 				/* We have a response */
-				printf("%d\n", tab_reg[1]);
+				printf("%s:%d\n", value, tab_reg[1]);
 			}
 			else
 			{
