@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	int code;
 	char errmsg[255];
 	FILE *f_lock;
-	char value[8];
+	char value[12];
 
 	uint16_t tab_reg[64];
 	int i, fd;
