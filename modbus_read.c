@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #ifndef MODBUS_RTU_RTS_NONE
 #define MODBUS_RTU_RTS_NONE   0
