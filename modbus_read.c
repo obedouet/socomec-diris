@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		/* Read from stdin */
-		while (fgets(&value, 8, stdin))
+		while (fgets(&value, 8, stdin)!=NULL)
 		{
 			if (debug) { fprintf(stderr,"DEBUG: Reading %s\n", value); }
 			code = modbus_read_registers(diris, atoi(value), 2, tab_reg);
