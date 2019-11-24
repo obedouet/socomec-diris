@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Wrapper to query Diris:
+#  $1: register
+#  $2: "conv"=convert value
 
 SPOOL_DIR=/run/diris
 
@@ -10,8 +14,20 @@ fi
 
 if [ -f ${SPOOL_DIR}/$1 ]
 then
-	cat ${SPOOL_DIR}/$1
+	# Register is in the query list
+    RES=`cat ${SPOOL_DIR}/$1`
+	if [ -n "RES"]
+	then
+		# We are sure we have a value
+    	if [ $RES -gt 32768 -a "$2" = "conv" ]
+    	then
+			# We need to convert the value
+			expr $RES - 65535
+		else
+			echo $RES
+		fi
+	fi
 else
-	touch ${SPOOL_DIR}/$1
+	# Ask spooler to query this register
+    touch ${SPOOL_DIR}/$1
 fi
-
