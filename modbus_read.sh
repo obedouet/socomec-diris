@@ -16,7 +16,7 @@ if [ -f ${SPOOL_DIR}/$1 ]
 then
 	# Register is in the query list
     RES=`cat ${SPOOL_DIR}/$1`
-	if [ -n "RES"]
+	if [ -n "$RES" ]
 	then
 		# We are sure we have a value
     	if [ $RES -gt 32768 -a "$2" = "conv" ]
