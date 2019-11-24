@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -28,7 +29,9 @@ int main(int argc, char *argv[])
 	int code;
 	char errmsg[255];
 	FILE *f_lock;
-	char value[12];
+	char *readin;
+	char diris_cmd[12], *diris_reg_str; 
+	int diris_reg;
 
 	uint16_t tab_reg[64];
 	int i, fd;
@@ -143,7 +146,7 @@ int main(int argc, char *argv[])
 	/* Set RTS/CTS */
 	fd = modbus_get_socket(diris);
 
-	if (argc==1)
+	if (argc==2)
 	{
 		/* Do the read */
 		if (debug) { fprintf(stderr,"DEBUG: Reading %s\n", argv[1]); }
@@ -175,31 +178,36 @@ int main(int argc, char *argv[])
 	else
 	{
 		/* Read from stdin */
-		while (fgets(value, 8, stdin)!=NULL)
+		if (debug) fprintf(stderr, "DEBUG: read from stdin\n");
+		readin=fgets(diris_cmd, 8, stdin);
+		while (readin!=NULL)
 		{
-			if (debug) { fprintf(stderr,"DEBUG: Reading %s\n", value); }
-			code = modbus_read_registers(diris, atoi(value), 2, tab_reg);
-			if (code < 0) {
-				fprintf(stderr, "ERROR: %s\n", modbus_strerror(errno));
-				modbus_close(diris);
-				modbus_free(diris);
-				unlink("/var/run/modbus.lck");
-				exit(1);
-			}
-			else if (code==2)
+			if (debug) fprintf(stderr, "DEBUG: I've read from stdin: %s\n", diris_cmd);
+			diris_reg=strtol(diris_cmd, &diris_reg_str, 10);
+			if (diris_reg_str!=diris_cmd)
 			{
-				/* We have a response */
-				printf("%s:%d\n", value, tab_reg[1]);
+				if (debug) { fprintf(stderr,"DEBUG: Reading %d\n", diris_reg); }
+				code = modbus_read_registers(diris, diris_reg, 2, tab_reg);
+				if (code < 0) {
+					fprintf(stderr, "ERROR: %s (register=%d)\n", modbus_strerror(errno), diris_reg);
+					/*modbus_close(diris);
+					modbus_free(diris);
+					unlink("/var/run/modbus.lck");
+					exit(1);*/
+				}
+				else if (code==2)
+				{
+					/* We have a response */
+					printf("%d:%d\n", diris_reg, tab_reg[1]);
+				}
+				else
+				{
+					/* Unknown response */
+					fprintf(stderr, "UNKNOWN: code=%d, value=%d\n", code, tab_reg[1]);
+				}
 			}
-			else
-			{
-				/* Unknown response */
-				fprintf(stderr, "UNKNOWN: code=%d, value=%d\n", code, tab_reg[1]);
-			}
-			
-			
+			readin=fgets(diris_cmd, 8, stdin);
 		}
-
 	}
 	
 
