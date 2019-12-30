@@ -4,7 +4,7 @@ from flask_restful import Resource
 from v1.common import read_counter
 
 class phase1_voltage(Resource):
-    def get():
+    def get(self):
         voltage = read_counter(50520)
         if voltage != None:
             return {'value':voltage}
@@ -12,7 +12,7 @@ class phase1_voltage(Resource):
             return {'error':'no value'}, 500
 
 class phase2_voltage(Resource):
-    def get():
+    def get(self):
         voltage = read_counter(50522)
         if voltage != None:
             return {'value':voltage}
@@ -20,7 +20,7 @@ class phase2_voltage(Resource):
             return {'error':'no value'}, 500
 
 class phase3_voltage(Resource):
-    def get():
+    def get(self):
         voltage = read_counter(50524)
         if voltage != None:
             return {'value':voltage}
