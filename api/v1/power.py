@@ -8,7 +8,10 @@ class total_real_power(Resource):
         power = read_counter(790)
         if power != None:
             # Real Power must be converted
-            return int(power)-65535
+            if int(power) > 32768:
+                return int(power)-65535
+            else:
+                return int(power)
         else:
             return {'error':'no value'}, 500
 
@@ -25,7 +28,10 @@ class phase1_real_power(Resource):
         power = read_counter(50544)
         if power != None:
             # Real Power must be converted
-            return int(power)-65535
+            if int(power) > 32768:
+                return int(power)-65535
+            else:
+                return int(power)
         else:
             return {'error':'no value'}, 500
 
@@ -50,7 +56,10 @@ class phase2_real_power(Resource):
         power = read_counter(50546)
         if power != None:
             # Real Power must be converted
-            return int(power)-65535
+            if int(power) > 32768:
+                return int(power)-65535
+            else:
+                return int(power)
         else:
             return {'error':'no value'}, 500
 
@@ -75,7 +84,10 @@ class phase3_real_power(Resource):
         power = read_counter(50548)
         if power != None:
             # Real Power must be converted
-            return int(power)-65535
+            if int(power) > 32768:
+                return int(power)-65535
+            else:
+                return int(power)
         else:
             return {'error':'no value'}, 500
 
