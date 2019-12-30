@@ -10,4 +10,4 @@ api.add_resource(phase2_voltage,'/phase2/voltage')
 api.add_resource(phase3_voltage,'/phase3/voltage')
 
 if __name__ == '__main__':
-     app.run(port=5002)
+     app.run(host="*", port=5002)
