@@ -1,5 +1,5 @@
 
-diris_spool_dir="/run/diris"
+diris_spool_dir="/run/diris/"
 
 def read_counter(counter):
     # Read Diris counter value stored in file
