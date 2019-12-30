@@ -1,7 +1,7 @@
 
 from flask_restful import Resource
 
-from common import read_counter
+from v1.common import read_counter
 
 class phase1_voltage(Resource):
     def get():
