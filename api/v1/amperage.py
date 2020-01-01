@@ -26,3 +26,11 @@ class phase3_amp(Resource):
             return int(amp)
         else:
             return {'error':'no value'}, 500
+
+class neutral_amp(Resource):
+    def get(self):
+        amp = read_counter(774)
+        if amp != None:
+            return int(amp)
+        else:
+            return {'error':'no value'}, 500

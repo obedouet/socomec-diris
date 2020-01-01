@@ -26,6 +26,7 @@ api.add_resource(phase3_apparent_power, '/phase3/apparent')
 api.add_resource(phase3_reactive_power, '/phase3/reactive')
 api.add_resource(phase3_real_power, '/phase3/real')
 api.add_resource(phase3_power_factor, '/phase3/pf')
+api.add_resource(neutral_amp,'/neutral/amps')
 
 if __name__ == '__main__':
      app.run(host='0.0.0.0', port=5002)
