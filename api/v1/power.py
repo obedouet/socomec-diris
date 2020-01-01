@@ -43,6 +43,14 @@ class phase1_reactive_power(Resource):
         else:
             return {'error':'no value'}, 500
 
+class phase1_power_factor(Resource):
+    def get(self):
+        factor = read_counter(50562)
+        if factor != None:
+            return int(factor)
+        else:
+            return {'error':'no value'}, 500
+
 class phase2_apparent_power(Resource):
     def get(self):
         power = read_counter(50558)
@@ -71,6 +79,14 @@ class phase2_reactive_power(Resource):
         else:
             return {'error':'no value'}, 500
 
+class phase2_power_factor(Resource):
+    def get(self):
+        factor = read_counter(50564)
+        if factor != None:
+            return int(factor)
+        else:
+            return {'error':'no value'}, 500
+
 class phase3_apparent_power(Resource):
     def get(self):
         power = read_counter(50560)
@@ -96,5 +112,13 @@ class phase3_reactive_power(Resource):
         power = read_counter(50550)
         if power != None:
             return int(power)
+        else:
+            return {'error':'no value'}, 500
+
+class phase3_power_factor(Resource):
+    def get(self):
+        factor = read_counter(50564)
+        if factor != None:
+            return int(factor)
         else:
             return {'error':'no value'}, 500
