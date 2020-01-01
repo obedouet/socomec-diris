@@ -8,6 +8,7 @@ app = Flask(__name__)
 api = Api(app)
 
 api.add_resource(total_real_power, '/total/real')
+api.add_resource(total_apparent_power, '/total/apparent')
 api.add_resource(phase1_voltage,'/phase1/voltage')
 api.add_resource(phase1_frequency,'/phase1/frequency')
 api.add_resource(phase1_amp,'/phase1/amps')

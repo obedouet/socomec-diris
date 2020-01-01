@@ -15,6 +15,14 @@ class total_real_power(Resource):
         else:
             return {'error':'no value'}, 500
 
+class total_apparent_power(Resource):
+    def get(self):
+        power = read_counter(794)
+        if power != None:
+            return int(power)
+        else:
+            return {'error':'no value'}, 500
+
 class phase1_apparent_power(Resource):
     def get(self):
         power = read_counter(50556)
