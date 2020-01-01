@@ -3,6 +3,14 @@ from flask_restful import Resource
 
 from v1.common import read_counter
 
+class phase1_frequency(Resource):
+    def get(self):
+        frequency = read_counter(788)
+        if frequency != None:
+            return int(frequency)
+        else:
+            return {'error':'no value'}, 500
+
 class phase1_voltage(Resource):
     def get(self):
         voltage = read_counter(50520)

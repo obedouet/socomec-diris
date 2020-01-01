@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
-from v1.voltage import phase1_voltage, phase2_voltage, phase3_voltage
+from v1.voltage import phase1_voltage, phase2_voltage, phase3_voltage, phase1_frequency
 from v1.amperage import *
 from v1.power import *
 
@@ -9,6 +9,7 @@ api = Api(app)
 
 api.add_resource(total_real_power, '/total/real')
 api.add_resource(phase1_voltage,'/phase1/voltage')
+api.add_resource(phase1_frequency,'/phase1/frequency')
 api.add_resource(phase1_amp,'/phase1/amps')
 api.add_resource(phase1_apparent_power, '/phase1/apparent')
 api.add_resource(phase1_reactive_power, '/phase1/reactive')
