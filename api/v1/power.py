@@ -125,7 +125,7 @@ class phase3_reactive_power(Resource):
 
 class phase3_power_factor(Resource):
     def get(self):
-        factor = read_counter(50564)
+        factor = read_counter(50566)
         if factor != None:
             return int(factor)
         else:
