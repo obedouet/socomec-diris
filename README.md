@@ -6,6 +6,7 @@ Here is a set of tools to read data from a Socomec's Diris circuit metering with
  - Socomec Diris (tested on A21) with Modbus option
  - Modbus USB device
  - libmodbus
+ - API: Python3, Flask
 
 ## How it work
 
@@ -16,6 +17,8 @@ and store the result into the file.
 The script diris_spool.sh is an alternative: it read all entries from /run/diris and ask them at once to modbus_read. It's more efficient because it ask at once all register on Diris.
 
 For both, register is a file in /run/diris and value is stored in. So if you create an empty file /run/diris/50524, it will ask Diris register 50524 and store the value in file. So you have a asynchronous way of querying Diris from a Cacti script. This is the purpose of modbus_read.sh: ask a register, it will create the file and manage conversion if needed (some value are signed).
+
+Option added 12/2019: a Python-Flask based API, to simplify query by using curl instead of ssh.
 
 ## Build
 
@@ -36,6 +39,21 @@ chown pi /run/diris_max
 
 The spool is to avoid having multiple access at same time to /dev/ttyUSB0.
 diris_max record the top value on 5 minute-period.
+
+Update: max values are suspended, will be re-enabled next
+
+## Run
+
+From current directory:
+```
+screen sh modbus_spool.sh
+```
+
+For API:
+```
+cd api
+screen python3 main.py
+``` 
 
 This script was tested on a Raspberry Pi B.
 
