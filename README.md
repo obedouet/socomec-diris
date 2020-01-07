@@ -57,4 +57,36 @@ screen python3 main.py
 
 This script was tested on a Raspberry Pi B.
 
+## API CALLS
+
+Default listen on port 5002 on all interfaces
+
+```
+/total/real : total real power in Watts
+/total/apparent : total apparent power in VA
+/phase1/frequency : in cents of Hz
+/phase1/voltage : in volts
+/phase1/amps : in mA
+/phase1/apparent : apparent power in VA
+/phase1/reactive : reactive power in VAR
+/phase1/real : real power in Watts
+/phase1/pf : Power Factor
+/phase2/voltage : in volts
+/phase2/amps : in mA
+/phase2/apparent : apparent power in VA
+/phase2/reactive : reactive power in VAR
+/phase2/real : real power in Watts
+/phase2/pf : Power Factor
+/phase3/voltage : in volts
+/phase3/amps : in mA
+/phase3/apparent : apparent power in VA
+/phase3/reactive : reactive power in VAR
+/phase3/real : real power in Watts
+/phase3/pf : Power Factor
+/neutral/amps : in mA
+```
+
+Real Power is signed, as it can be negative.
+Power Factor need to be converted, if value is over 32768, you have to do "65535 - value" to find the real value.
+
 
