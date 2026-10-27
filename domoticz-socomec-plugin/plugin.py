@@ -8,7 +8,7 @@
 # the POLL_ENDPOINTS / device specs below; the plugin skeleton stays the same.
 #
 """
-<plugin key="energy-utility" name="Energy Utility REST" author="obedouet" version="0.1" wikilink="https://github.com/obedouet/">
+<plugin key="energy-utility" name="Energy Utility REST" author="obedouet" version="0.1" wikilink="https://github.com/obedouet/socomec-diris">
     <params>
         <param field="mAddress" label="API Host" width="200px" required="true" default="127.0.0.1"/>
         <param field="mPort" label="API Port" width="75px" required="true" default="5002"/>
